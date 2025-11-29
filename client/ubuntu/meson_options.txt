@@ -1,0 +1,8 @@
+# Meson options for P2PBoard Ubuntu Client
+# Author: Claude Code
+# Date: 2025-11-29
+
+option('enable_debug', type : 'boolean', value : false, description : 'Enable debug build')
+option('enable_verbose', type : 'boolean', value : false, description : 'Enable verbose output')
+option('use_wayland', type : 'boolean', value : true, description : 'Use Wayland display server')
+option('use_x11', type : 'boolean', value : false, description : 'Use X11 display server')
