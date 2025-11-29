@@ -5,6 +5,7 @@
 #include <boost/beast.hpp>
 #include <memory>
 #include <unordered_set>
+#include <mutex>
 
 namespace net = boost::asio;
 namespace beast = boost::beast;
@@ -14,12 +15,13 @@ namespace websocket = beast::websocket;
 class session_manager
 {
 public:
-    void add(websocket::stream<tcp::socket> *ws);
+    void add(std::shared_ptr<websocket::stream<tcp::socket>> ws);
     void remove(websocket::stream<tcp::socket> *ws);
     void broadcast(const std::string &message);
 
 private:
     std::unordered_set<websocket::stream<tcp::socket> *> sessions_;
+    std::mutex sessions_mutex_;
 };
 
 class clipboard_server
